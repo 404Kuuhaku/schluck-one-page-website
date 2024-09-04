@@ -1,182 +1,68 @@
-// import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-
-// const MainSection = async ({ params }: any) => {
-// 	return (
-// 		<>
-// 			<Box
-// 				sx={{
-// 					backgroundImage: "url(/images/schluck.jpg)",
-// 					backgroundSize: "cover",
-// 					backgroundPosition: "center",
-// 					padding: 4, // Add some padding to your content
-// 					// color: "white",
-// 					minHeight: { xs: 300, sm: 400, md: 400, lg: "100vh" },
-
-// 					//set up for text
-// 					display: "flex", // Use flexbox
-// 					justifyContent: "center", // Center horizontally
-// 					alignItems: "center", // Center vertically
-// 				}}
-// 			>
-// 				<Box
-// 					sx={{
-// 						// maxWidth: "50%",
-// 						maxWidth: {
-// 							xs: "95%",
-// 							sm: "85%",
-// 							md: "75%",
-// 							lg: "65%",
-// 						},
-// 						textAlign: "center",
-// 						// color: "white",
-// 					}}
-// 				>
-// 					<Box>
-// 						<Typography
-// 							variant="h2"
-// 							component="div"
-// 							sx={{
-// 								fontSize: {
-// 									xs: 60,
-// 									sm: 70,
-// 									md: 100,
-// 									lg: 150,
-// 								},
-// 								fontWeight: "500",
-// 							}}
-// 						>
-// 							Schluck
-// 						</Typography>
-// 						<Typography
-// 							variant="h5"
-// 							component="h5"
-// 							sx={{
-// 								fontSize: {
-// 									xs: 15,
-// 									sm: 20,
-// 									md: 25,
-// 									lg: 30,
-// 								},
-// 							}}
-// 						>
-// 							ร้านอาหารสไตล์ฟิวชั่นและขนมสไตล์ฝรั่งเศส
-// 						</Typography>
-// 						<Typography
-// 							variant="h5"
-// 							component="h5"
-// 							sx={{
-// 								fontSize: {
-// 									xs: 15,
-// 									sm: 20,
-// 									md: 25,
-// 									lg: 30,
-// 								},
-// 							}}
-// 						>
-// 							ร้านได้เปิดบริการมาเข้าปีที่ 31
-// 						</Typography>
-// 						<Typography
-// 							variant="h5"
-// 							component="h5"
-// 							sx={{
-// 								fontSize: {
-// 									xs: 15,
-// 									sm: 20,
-// 									md: 25,
-// 									lg: 30,
-// 								},
-// 							}}
-// 						>
-// 							โดยเจ้าของร้านได้ทำอาหารเอง
-// 							บรรยากาศสไตล์ครอบครัวเหมือนทานอาหารอยู่ที่บ้าน
-// 						</Typography>
-// 						<Typography
-// 							variant="h5"
-// 							component="h5"
-// 							sx={{
-// 								fontSize: {
-// 									xs: 15,
-// 									sm: 20,
-// 									md: 25,
-// 									lg: 30,
-// 								},
-// 							}}
-// 						>
-// 							ร้านตัังอยู่บนถนนมหาดไทย เชิงสะพานสุดใจ
-// 							แม่น้ำแควใหญ่ อ.เมือง จ.กาญจนบุรี
-// 						</Typography>
-
-// 						<Typography>เวลาเปิด-ปิด 11.00-21.00น.</Typography>
-// 						<Typography>ร้านหยุด วันอังคาร</Typography>
-// 						<Typography>เบอร์โทร 081-355-9477</Typography>
-// 					</Box>
-// 				</Box>
-// 			</Box>
-// 		</>
-// 	);
-// };
-
-// export default MainSection;
-
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { AnimatePresence, motion } from "framer-motion";
 
-const images = [
-	"/images/schluck1.jpg",
-	"/images/schluck2.jpg",
-	"/images/schluck3.jpg",
-	"/images/schluck4.jpg",
-	"/images/schluck5.jpg",
-];
-
 const MainSection = ({ params }: any) => {
 	const [currentImage, setCurrentImage] = useState(0);
-	const [animationStyle, setAnimationStyle] = useState({
-		initial: { opacity: 0, scale: 1.05 },
-		animate: { opacity: 1, scale: 1 },
-		exit: { opacity: 0, scale: 1.05 },
-	});
+	const [isZoomIn, setIsZoomIn] = useState(true);
 
+	const images = useMemo(
+		() => [
+			"/images/schluck1.jpg",
+			"/images/schluck2.jpg",
+			"/images/schluck3.jpg",
+			"/images/schluck4.jpg",
+			"/images/schluck5.jpg",
+		],
+		[]
+	);
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setAnimationStyle((prevStyle) => {
-				if (
-					prevStyle.initial.scale === 1.05 &&
-					prevStyle.animate.scale === 1
-				) {
-					return {
-						initial: { opacity: 0, scale: 1 },
-						animate: { opacity: 1, scale: 1.05 },
-						exit: { opacity: 0, scale: 1 },
-					};
-				} else {
-					return {
-						initial: { opacity: 0, scale: 1.05 },
-						animate: { opacity: 1, scale: 1 },
-						exit: { opacity: 0, scale: 1.05 },
-					};
-				}
-			});
+			setIsZoomIn((prev) => !prev);
 			setCurrentImage((prevImage) =>
 				prevImage === images.length - 1 ? 0 : prevImage + 1
 			);
 		}, 4000);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [images.length]);
+
+	const nameStyle = useMemo(
+		() => ({
+			fontSize: {
+				xs: 60,
+				sm: 70,
+				md: 100,
+				lg: 150,
+			},
+			fontWeight: "500",
+		}),
+		[]
+	);
+
+	const descriptionStyle = useMemo(
+		() => ({
+			fontSize: {
+				xs: 15,
+				sm: 20,
+				md: 25,
+				lg: 30,
+			},
+		}),
+		[]
+	);
+
 	return (
 		<Box
 			sx={{
 				position: "relative",
 				minHeight: { xs: 300, sm: 400, md: 400, lg: "100vh" },
 				overflow: "hidden",
-				display: "flex", // Use flexbox
-				justifyContent: "center", // Center horizontally
-				alignItems: "center", // Center vertically
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
 			}}
 		>
 			<AnimatePresence>
@@ -185,13 +71,21 @@ const MainSection = ({ params }: any) => {
 						index === currentImage && (
 							<motion.div
 								key={image}
-								initial={animationStyle.initial}
-								animate={animationStyle.animate}
-								exit={animationStyle.exit}
+								initial={{
+									opacity: 0,
+									scale: isZoomIn ? 1.05 : 1,
+								}}
+								animate={{
+									opacity: 1,
+									scale: isZoomIn ? 1 : 1.05,
+								}}
+								exit={{
+									opacity: 0,
+									scale: isZoomIn ? 1.05 : 1,
+								}}
 								transition={{
-									opacity: { duration: 1, ease: "easeInOut" }, // Short duration for image fade
-									scale: { duration: 4, ease: "easeInOut" }, // Longer duration for zoom
-									// repeatType: "reverse",
+									opacity: { duration: 1, ease: "easeInOut" },
+									scale: { duration: 4, ease: "easeInOut" },
 								}}
 								style={{
 									position: "absolute",
@@ -202,7 +96,7 @@ const MainSection = ({ params }: any) => {
 									backgroundImage: `url(${image})`,
 									backgroundSize: "cover",
 									backgroundPosition: "center",
-									filter: "blur(4px)",
+									// filter: "blur(4px)",
 									zIndex: 1,
 								}}
 							></motion.div>
@@ -213,7 +107,7 @@ const MainSection = ({ params }: any) => {
 			<Box
 				sx={{
 					position: "relative",
-					zIndex: 2, // Place the text on top
+					zIndex: 2,
 					maxWidth: {
 						xs: "95%",
 						sm: "85%",
@@ -222,79 +116,36 @@ const MainSection = ({ params }: any) => {
 					},
 					textAlign: "center",
 					color: "white",
-					padding: 4, // Optional: add padding inside the text container
+					backdropFilter: "blur(10px)",
+					backgroundColor: "rgba(0, 0, 0, 0.3)",
+					padding: {
+						xs: 2,
+						sm: 3,
+						md: 7,
+						lg: 7,
+					},
+					borderRadius: {
+						xs: 4,
+						sm: 4,
+						md: 7,
+						lg: 7,
+					},
 				}}
 			>
-				<Typography
-					variant="h2"
-					component="div"
-					sx={{
-						fontSize: {
-							xs: 60,
-							sm: 70,
-							md: 100,
-							lg: 150,
-						},
-						fontWeight: "500",
-					}}
-				>
+				<Typography variant="h2" component="div" sx={nameStyle}>
 					Schluck
 				</Typography>
-				<Typography
-					variant="h5"
-					component="h5"
-					sx={{
-						fontSize: {
-							xs: 15,
-							sm: 20,
-							md: 25,
-							lg: 30,
-						},
-					}}
-				>
+				<Typography variant="h5" component="h5" sx={descriptionStyle}>
 					ร้านอาหารสไตล์ฟิวชั่นและขนมสไตล์ฝรั่งเศส
 				</Typography>
-				<Typography
-					variant="h5"
-					component="h5"
-					sx={{
-						fontSize: {
-							xs: 15,
-							sm: 20,
-							md: 25,
-							lg: 30,
-						},
-					}}
-				>
+				<Typography variant="h5" component="h5" sx={descriptionStyle}>
 					ร้านได้เปิดบริการมาเข้าปีที่ 31
 				</Typography>
-				<Typography
-					variant="h5"
-					component="h5"
-					sx={{
-						fontSize: {
-							xs: 15,
-							sm: 20,
-							md: 25,
-							lg: 30,
-						},
-					}}
-				>
+				<Typography variant="h5" component="h5" sx={descriptionStyle}>
 					โดยเจ้าของร้านได้ทำอาหารเอง
 					บรรยากาศสไตล์ครอบครัวเหมือนทานอาหารอยู่ที่บ้าน
 				</Typography>
-				<Typography
-					variant="h5"
-					component="h5"
-					sx={{
-						fontSize: {
-							xs: 15,
-							sm: 20,
-							md: 25,
-							lg: 30,
-						},
-					}}
-				>
+				<Typography variant="h5" component="h5" sx={descriptionStyle}>
 					ร้านตัังอยู่บนถนนมหาดไทย เชิงสะพานสุดใจ แม่น้ำแควใหญ่
 					อ.เมือง จ.กาญจนบุรี
 				</Typography>
