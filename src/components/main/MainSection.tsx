@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { AnimatePresence, motion } from "framer-motion";
 
-const MainSection = ({ params }: any) => {
+const MainSection: React.FC = () => {
 	const [currentImage, setCurrentImage] = useState(0);
 	const [isZoomIn, setIsZoomIn] = useState(true);
 
