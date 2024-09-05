@@ -1,10 +1,22 @@
 export interface IRecommendMenu {
-    id: number;
-    name: string;
-    des: string;
-    img: IImageRecommendMenu[];
+	id: number;
+	name: string;
+	des: string;
+	img: IImageRecommendMenu[];
 }
 
 export interface IImageRecommendMenu {
-    src : string
+	src: string;
+}
+
+export interface IPopUpProps {
+	name: string;
+	imgSrc: string;
+	// ptValues: { xs: number; md: number; lg: number };
+}
+
+export interface SocialButtonProps {
+	icon: React.ReactNode;
+	label: string;
+	url: string;
 }

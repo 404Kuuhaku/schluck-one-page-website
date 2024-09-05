@@ -8,6 +8,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 import SocialButton from "@/components/button/socialButton/SocialButton";
+import { SocialButtonProps } from "@/libs/interface/interface";
 
 const ContentWrapper: React.FC<PropsWithChildren<{}>> = ({ children }) => {
 	return (
@@ -37,8 +38,8 @@ const FooterSection: React.FC = () => {
 		return { textAlign: { xs: "center", md: "left" } };
 	}, []);
 
-	const socialData = useMemo(
-		() => [
+	const socialData = useMemo(() => {
+		const data: SocialButtonProps[] = [
 			{
 				icon: <FacebookIcon />,
 				label: "Schluck",
@@ -49,13 +50,13 @@ const FooterSection: React.FC = () => {
 				label: "schluck1993",
 				url: "https://www.instagram.com/schluck1993/",
 			},
-		],
-		[]
-	);
+		];
+		return data;
+	}, []);
 
 	return (
 		<>
-			<Box sx={{py:5}}>
+			<Box sx={{ py: 5 }}>
 				<Grid
 					container
 					spacing={{ xs: 4 }}

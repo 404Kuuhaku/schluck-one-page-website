@@ -18,8 +18,12 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 		img: [
 			{ src: "/images/menu/valid_background/charcoal_stove_pizza_1.jpg" },
 			{ src: "/images/menu/valid_background/charcoal_stove_pizza_2.jpg" },
-			{ src: "/images/menu/transparent_background/charcoal_stove_pizza_1.png" },
-			{ src: "/images/menu/transparent_background/charcoal_stove_pizza_2.png" },
+			{
+				src: "/images/menu/transparent_background/charcoal_stove_pizza_1.png",
+			},
+			{
+				src: "/images/menu/transparent_background/charcoal_stove_pizza_2.png",
+			},
 		],
 	},
 	{
@@ -34,7 +38,13 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 		des: "",
 		img: [
 			{
-				src: "/images/menu/valid_background/baked_spinach_with_cheese.jpg",
+				src: "/images/menu/valid_background/baked_spinach_with_cheese_1.jpg",
+			},
+			{
+				src: "/images/menu/valid_background/baked_spinach_with_cheese_2.jpg",
+			},
+			{
+				src: "/images/menu/transparent_background/baked_spinach_with_cheese_1.png",
 			},
 		],
 	},
@@ -42,7 +52,10 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 		id: 5,
 		name: "ลาซานญ่า",
 		des: "",
-		img: [{ src: "/images/menu/valid_background/lasagna.jpg" }],
+		img: [
+			{ src: "/images/menu/valid_background/lasagna.jpg" },
+			{ src: "/images/menu/transparent_background/lasagna.png" },
+		],
 	},
 	{
 		id: 6,

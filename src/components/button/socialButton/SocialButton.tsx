@@ -1,11 +1,12 @@
+import { SocialButtonProps } from "@/libs/interface/interface";
 import { Button, Typography } from "@mui/material";
 import { useCallback } from "react";
 
-interface SocialButtonProps {
-	icon: React.ReactNode;
-	label: string;
-	url: string;
-}
+// interface SocialButtonProps {
+// 	icon: React.ReactNode;
+// 	label: string;
+// 	url: string;
+// }
 
 const SocialButton: React.FC<SocialButtonProps> = ({ icon, label, url }) => {
 	const handleClick = useCallback(() => {
