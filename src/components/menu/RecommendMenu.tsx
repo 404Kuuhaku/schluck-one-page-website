@@ -122,7 +122,14 @@ const PizzaSection: React.FC = () => {
 	const isInView = useInView(ref, { once: true });
 	return (
 		<>
-			<Box sx={{ pt: { xs: 2, md: 5 }, pb: 5 }}>
+			<Box
+				sx={{
+					pt: { xs: 2, md: 5 },
+					pb: 3,
+					bgcolor: "#14100d",
+					height: { xs: 400, md: 650 },
+				}}
+			>
 				<Grid container spacing={{ xs: 0, md: 4 }}>
 					<Grid
 						size={{ xs: 12, md: 6 }}
@@ -212,39 +219,63 @@ const PizzaSection: React.FC = () => {
 	);
 };
 
-const NormalSection: React.FC = () => {
-	const popUpData = useMemo(() => {
-		const data: IPopUpProps[] = [
-			{
-				name: RECOMMEND_MENU[3].name,
-				imgSrc: RECOMMEND_MENU[3].img[2].src,
-			},
-			{
-				name: RECOMMEND_MENU[4].name,
-				imgSrc: RECOMMEND_MENU[4].img[1].src,
-			},
-		];
-
-		return data;
-	}, []);
+const FiletMignon: React.FC = () => {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
 	return (
 		<>
 			<Box
 				sx={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
 					pt: { xs: 0, md: 5 },
-					pb: 5,
+					pb: 6,
+					height: { xs: 400, md: 650 },
 				}}
 			>
-				<Grid container spacing={{ xs: 0, md: 4 }}>
-					{popUpData.map((data, index) => (
-						<Grid size={{ xs: 12, md: 6 }} key={index}>
-							<PopUp name={data.name} imgSrc={data.imgSrc} />
-						</Grid>
-					))}
-				</Grid>
+				<Typography
+					variant="h3"
+					gutterBottom
+					sx={{
+						textAlign: { xs: "center" },
+						fontWeight: { xs: 500, md: 700 },
+					}}
+				>
+					{RECOMMEND_MENU[2].name}
+				</Typography>
+				<Typography
+					variant="h5"
+					gutterBottom
+					sx={{
+						textAlign: { xs: "center" },
+					}}
+				>
+					{RECOMMEND_MENU[2].des}
+				</Typography>
+				<Box
+					sx={{
+						mx: "auto",
+						width: { xs: 300, sm: 400, md: 600, lg: 600 },
+						height: { xs: 225, sm: 300, md: 450, lg: 450 },
+					}}
+				>
+					<motion.div
+						ref={ref}
+						initial={{ y: -300, opacity: 0 }}
+						animate={{
+							y: isInView ? 0 : -100,
+							opacity: isInView ? 1 : 0,
+						}}
+						transition={{ duration: 0.8 }}
+						style={{
+							width: "100%",
+							height: "100%",
+							backgroundImage: `url(${RECOMMEND_MENU[2].img[0].src})`,
+							backgroundSize: "cover",
+							backgroundPosition: "center",
+							backgroundRepeat: "no-repeat",
+							boxShadow: "20px 20px 0px #3d251e",
+						}}
+					/>
+				</Box>
 			</Box>
 		</>
 	);
@@ -258,9 +289,11 @@ const GarlicBreadSection: React.FC = () => {
 			<Box
 				sx={{
 					pt: { xs: 2, md: 5 },
-					pb: 5,
+					pb: 6,
 					display: "flex",
 					justifyContent: "center",
+					bgcolor: "#14100d",
+					height: { xs: 400, md: 650 },
 				}}
 			>
 				<Grid
@@ -269,7 +302,7 @@ const GarlicBreadSection: React.FC = () => {
 					sx={{ width: "90vw" }}
 				>
 					<Grid
-						size={{ xs: 12, md: 6 }}
+						size={{ xs: 12, md: 5 }}
 						sx={{
 							alignItems: "center",
 						}}
@@ -296,7 +329,7 @@ const GarlicBreadSection: React.FC = () => {
 						</Typography>
 					</Grid>
 
-					<Grid size={{ xs: 12, md: 6 }}>
+					<Grid size={{ xs: 12, md: 7}}>
 						<Box
 							sx={{
 								mx: "auto",
@@ -329,6 +362,45 @@ const GarlicBreadSection: React.FC = () => {
 	);
 };
 
+const NormalSection: React.FC = () => {
+	const popUpData = useMemo(() => {
+		const data: IPopUpProps[] = [
+			{
+				name: RECOMMEND_MENU[3].name,
+				imgSrc: RECOMMEND_MENU[3].img[2].src,
+			},
+			{
+				name: RECOMMEND_MENU[4].name,
+				imgSrc: RECOMMEND_MENU[4].img[1].src,
+			},
+		];
+
+		return data;
+	}, []);
+	return (
+		<>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					pt: { xs: 0, md: 5 },
+					pb: 5,
+					height: { xs: 400, md: 650 },
+				}}
+			>
+				<Grid container spacing={{ xs: 0, md: 4 }}>
+					{popUpData.map((data, index) => (
+						<Grid size={{ xs: 12, md: 6 }} key={index}>
+							<PopUp name={data.name} imgSrc={data.imgSrc} />
+						</Grid>
+					))}
+				</Grid>
+			</Box>
+		</>
+	);
+};
+
 const RecommendMenu: React.FC = () => {
 	return (
 		<>
@@ -345,8 +417,10 @@ const RecommendMenu: React.FC = () => {
 			</Typography>
 			<TBoneSection />
 			<PizzaSection />
-			<NormalSection />
+			<FiletMignon />
 			<GarlicBreadSection />
+			<NormalSection />
+
 			{/* <Typography>
 				นอกจากอาหารและขนมแล้ว
 				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี
