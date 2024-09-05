@@ -136,7 +136,7 @@ const PizzaSection: React.FC = () => {
 							sx={{
 								textAlign: { xs: "center", md: "left" },
 								fontWeight: { xs: 500, md: 700 },
-								pt: { xs: 0, md: 7 },
+								pt: { xs: 0, md: 8 },
 							}}
 						>
 							{RECOMMEND_MENU[1].name}
@@ -151,7 +151,7 @@ const PizzaSection: React.FC = () => {
 							{RECOMMEND_MENU[1].des}
 						</Typography>
 					</Grid>
-					<Grid size={{ xs: 12, md: 6 }}>
+					<Grid size={{ xs: 12, md: 7 }}>
 						<Box
 							sx={{
 								mx: "auto",
@@ -179,7 +179,7 @@ const PizzaSection: React.FC = () => {
 						</Box>
 					</Grid>
 					<Grid
-						size={{ xs: 12, md: 6 }}
+						size={{ xs: 12, md: 4 }}
 						sx={{
 							display: { xs: "none", md: "block" },
 							alignItems: "center",
