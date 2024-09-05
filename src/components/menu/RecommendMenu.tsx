@@ -75,6 +75,7 @@ const TBoneSection: React.FC = () => {
 							sx={{
 								textAlign: { xs: "center", md: "left" },
 								fontWeight: { xs: 500, md: 700 },
+								pt: { xs: 0, md: 7 },
 							}}
 						>
 							{RECOMMEND_MENU[0].name}
@@ -90,15 +91,12 @@ const TBoneSection: React.FC = () => {
 						</Typography>
 						<Box
 							sx={{
-								display: { xs: "flex", md: "block" },
 								mx: "auto",
 								width: { xs: "95%", md: "100%" },
 								height: { xs: 300 },
 								position: { xs: "static", md: "absolute" },
 								left: 0,
 								bottom: 0,
-								// borderRadius: 2,
-								// boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.2)",
 							}}
 						>
 							<motion.div
@@ -126,7 +124,6 @@ const TBoneSection: React.FC = () => {
 					<Grid size={{ xs: 12, md: 6 }}>
 						<Box
 							sx={{
-								display: { xs: "flex", md: "block" },
 								mx: "auto",
 								width: { xs: "95%", md: 400 },
 								height: { xs: 400, md: 600 },
@@ -159,10 +156,104 @@ const TBoneSection: React.FC = () => {
 	);
 };
 
+const PizzaSection: React.FC = () => {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
+	return (
+		<>
+			<Box sx={{ pt: { xs: 2, md: 5 }, pb: 5 }}>
+				<Grid container spacing={{ xs: 0, md: 4 }}>
+					<Grid
+						size={{ xs: 12, md: 6 }}
+						sx={{
+							display: { xs: "block", md: "none" },
+						}}
+					>
+						<Typography
+							variant="h3"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+								fontWeight: { xs: 500, md: 700 },
+								pt: { xs: 0, md: 7 },
+							}}
+						>
+							{RECOMMEND_MENU[1].name}
+						</Typography>
+						<Typography
+							variant="h5"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+							}}
+						>
+							{RECOMMEND_MENU[1].des}
+						</Typography>
+					</Grid>
+					<Grid size={{ xs: 12, md: 6 }}>
+						<Box
+							sx={{
+								mx: "auto",
+								width: { xs: 300, sm: 400, md: 600, lg: 800 },
+								height: { xs: 225, sm: 300, md: 450, lg: 600 },
+							}}
+						>
+							<motion.div
+								ref={ref}
+								initial={{ x: -300, opacity: 0 }}
+								animate={{
+									x: isInView ? 0 : -100,
+									opacity: isInView ? 1 : 0,
+								}}
+								transition={{ duration: 0.8 }}
+								style={{
+									width: "100%",
+									height: "100%",
+									backgroundImage: `url(${RECOMMEND_MENU[1].img[2].src})`,
+									backgroundSize: "cover",
+									backgroundPosition: "center",
+									backgroundRepeat: "no-repeat",
+								}}
+							/>
+						</Box>
+					</Grid>
+					<Grid
+						size={{ xs: 12, md: 6 }}
+						sx={{
+							display: { xs: "none", md: "block" },
+							alignItems: "center",
+						}}
+					>
+						<Typography
+							variant="h3"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+								fontWeight: { xs: 500, md: 700 },
+								pt: { xs: 0, md: 17, lg: 25 },
+							}}
+						>
+							{RECOMMEND_MENU[1].name}
+						</Typography>
+						<Typography
+							variant="h5"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+							}}
+						>
+							{RECOMMEND_MENU[1].des}
+						</Typography>
+					</Grid>
+				</Grid>
+			</Box>
+		</>
+	);
+};
+
 const RecommendMenuCard: React.FC = ({ params }: any) => {
 	return (
 		<>
-			<TBoneSection />
 			<Card sx={{ maxWidth: 500 }}>
 				<CardMedia
 					component="img"
@@ -208,14 +299,16 @@ const RecommendMenu: React.FC = ({ params }: any) => {
 			>
 				เมนูแนะนำ
 			</Typography>
-			<RecommendMenuCard />
-			<Typography>
+			<TBoneSection />
+			<PizzaSection />
+			{/* <RecommendMenuCard /> */}
+			{/* <Typography>
 				นอกจากอาหารและขนมแล้ว
 				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี
 				กาแฟสาละวะไล่โว่ (กาแฟออร์แกนิค) ภายใต้โครงการมูลนิธิภูมิบดินทร์
 				เพื่อส่งเสริมและพัฒนาชุมชนในเขตรักษาพันธุ์สัตว์ป่าทุ่งใหญ่
 				ซึ่งจำหน่ายที่ร้าน Schluck ที่เดียวในกาญจนบุรี
-			</Typography>
+			</Typography> */}
 		</>
 	);
 };

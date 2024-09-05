@@ -16,7 +16,10 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 		name: "พิซซ่าอบเตาถ่าน",
 		des: "แป้งทางร้านทำเอง รวมถึงซอส ชีสนำเข้าจากต่างประเทศ",
 		img: [
-			{ src: "/images/menu/valid_background/charcoal_stove_pizza.jpg" },
+			{ src: "/images/menu/valid_background/charcoal_stove_pizza_1.jpg" },
+			{ src: "/images/menu/valid_background/charcoal_stove_pizza_2.jpg" },
+			{ src: "/images/menu/transparent_background/charcoal_stove_pizza_1.png" },
+			{ src: "/images/menu/transparent_background/charcoal_stove_pizza_2.png" },
 		],
 	},
 	{
