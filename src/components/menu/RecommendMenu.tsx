@@ -384,9 +384,9 @@ const NormalSection: React.FC = () => {
 					display: "flex",
 					justifyContent: "center",
 					alignItems: "center",
-					pt: { xs: 0, md: 5 },
+					pt: { xs: 5, md: 5 },
 					pb: 5,
-					height: { xs: 400, md: 650 },
+					height: { xs: "auto", md: 650 },
 				}}
 			>
 				<Grid container spacing={{ xs: 0, md: 4 }}>
