@@ -250,6 +250,85 @@ const NormalSection: React.FC = () => {
 	);
 };
 
+const GarlicBreadSection: React.FC = () => {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
+	return (
+		<>
+			<Box
+				sx={{
+					pt: { xs: 2, md: 5 },
+					pb: 5,
+					display: "flex",
+					justifyContent: "center",
+				}}
+			>
+				<Grid
+					container
+					spacing={{ xs: 0, md: 4 }}
+					sx={{ width: "90vw" }}
+				>
+					<Grid
+						size={{ xs: 12, md: 6 }}
+						sx={{
+							alignItems: "center",
+						}}
+					>
+						<Typography
+							variant="h3"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "right" },
+								fontWeight: { xs: 500, md: 700 },
+								pt: { xs: 0, md: 7, lg: 25 },
+							}}
+						>
+							{RECOMMEND_MENU[5].name}
+						</Typography>
+						<Typography
+							variant="h5"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "right" },
+							}}
+						>
+							{RECOMMEND_MENU[5].des}
+						</Typography>
+					</Grid>
+
+					<Grid size={{ xs: 12, md: 6 }}>
+						<Box
+							sx={{
+								mx: "auto",
+								width: { xs: 300, sm: 400, md: 400, lg: 500 },
+								height: { xs: 225, sm: 300, md: 300, lg: 500 },
+							}}
+						>
+							<motion.div
+								ref={ref}
+								initial={{ x: 30, opacity: 0 }}
+								animate={{
+									x: isInView ? 0 : 30,
+									opacity: isInView ? 1 : 0,
+								}}
+								transition={{ duration: 0.8 }}
+								style={{
+									width: "100%",
+									height: "100%",
+									backgroundImage: `url(${RECOMMEND_MENU[5].img[1].src})`,
+									backgroundSize: "cover",
+									backgroundPosition: "center",
+									backgroundRepeat: "no-repeat",
+								}}
+							/>
+						</Box>
+					</Grid>
+				</Grid>
+			</Box>
+		</>
+	);
+};
+
 const RecommendMenu: React.FC = () => {
 	return (
 		<>
@@ -267,6 +346,7 @@ const RecommendMenu: React.FC = () => {
 			<TBoneSection />
 			<PizzaSection />
 			<NormalSection />
+			<GarlicBreadSection />
 			{/* <Typography>
 				นอกจากอาหารและขนมแล้ว
 				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี

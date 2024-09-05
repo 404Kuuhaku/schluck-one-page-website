@@ -61,7 +61,10 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 		id: 6,
 		name: "ขนมปังกระเทียม",
 		des: "ทางร้านได้นวดทำขนมปังเองและอบเองสไตล์ทางร้าน",
-		img: [{ src: "/images/menu/valid_background/garlic_bread.jpg" }],
+		img: [
+			{ src: "/images/menu/valid_background/garlic_bread.jpg" },
+			{ src: "/images/menu/transparent_background/garlic_bread.png" },
+		],
 	},
 	// {
 	// 	id: 7,

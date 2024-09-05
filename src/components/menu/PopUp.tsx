@@ -32,8 +32,8 @@ const PopUp: React.FC<IPopUpProps> = ({ name, imgSrc }) => {
 			<Box
 				sx={{
 					mx: "auto",
-					width: { xs: 300, sm: 400, md: 500, lg: 600 },
-					height: { xs: 225, sm: 300, md: 375, lg: 450 },
+					width: { xs: 300, sm: 400, md: 400, lg: 600 },
+					height: { xs: 225, sm: 300, md: 300, lg: 450 },
 				}}
 			>
 				<motion.div
