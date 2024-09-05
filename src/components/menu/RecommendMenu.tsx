@@ -1,4 +1,4 @@
-// import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography } from "@mui/material";
+"use client";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -16,7 +16,11 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { RECOMMEND_MENU } from "@/libs/constants/constats";
+
+import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
 
 // const RecommendMenuWrapper = async ({ children }: { children: React.ReactNode }) => {
 // 	return (
@@ -44,14 +48,126 @@ import { RECOMMEND_MENU } from "@/libs/constants/constats";
 // 	);
 // };
 
-const RecommendMenuCard = async ({ params }: any) => {
+const TBoneSection: React.FC = () => {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
 	return (
 		<>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					pt: { xs: 0, md: 5 },
+					pb: 5,
+				}}
+			>
+				<Grid container spacing={{ xs: 4 }}>
+					<Grid
+						size={{ xs: 12, md: 6 }}
+						sx={{
+							position: { xs: "static", md: "relative" },
+						}}
+					>
+						<Typography
+							variant="h3"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+								fontWeight: { xs: 500, md: 700 },
+							}}
+						>
+							{RECOMMEND_MENU[0].name}
+						</Typography>
+						<Typography
+							variant="h5"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+							}}
+						>
+							{RECOMMEND_MENU[0].des}
+						</Typography>
+						<Box
+							sx={{
+								display: { xs: "flex", md: "block" },
+								mx: "auto",
+								width: { xs: "95%", md: "100%" },
+								height: { xs: 300 },
+								position: { xs: "static", md: "absolute" },
+								left: 0,
+								bottom: 0,
+								// borderRadius: 2,
+								// boxShadow: "5px 10px 10px rgba(0, 0, 0, 0.2)",
+							}}
+						>
+							<motion.div
+								ref={ref}
+								initial={{ y: 100, opacity: 0 }}
+								animate={{
+									y: isInView ? 0 : 100,
+									opacity: isInView ? 1 : 0,
+								}}
+								transition={{ duration: 0.8 }}
+								style={{
+									width: "100%",
+									height: "100%",
+									backgroundImage: `url(${RECOMMEND_MENU[0].img[1].src})`,
+									backgroundSize: "cover",
+									backgroundPosition: "center",
+									backgroundRepeat: "no-repeat",
+									borderRadius: "1rem",
+									boxShadow:
+										"5px 10px 10px rgba(0, 0, 0, 0.2)",
+								}}
+							/>
+						</Box>
+					</Grid>
+					<Grid size={{ xs: 12, md: 6 }}>
+						<Box
+							sx={{
+								display: { xs: "flex", md: "block" },
+								mx: "auto",
+								width: { xs: "95%", md: 400 },
+								height: { xs: 400, md: 600 },
+							}}
+						>
+							<motion.div
+								initial={{ y: -100, opacity: 0 }}
+								animate={{
+									y: isInView ? 0 : -100,
+									opacity: isInView ? 1 : 0,
+								}}
+								transition={{ duration: 0.8 }}
+								style={{
+									width: "100%",
+									height: "100%",
+									backgroundImage: `url(${RECOMMEND_MENU[0].img[0].src})`,
+									backgroundSize: "cover",
+									backgroundPosition: "center",
+									backgroundRepeat: "no-repeat",
+									borderRadius: "1rem",
+									boxShadow:
+										"5px 10px 10px rgba(0, 0, 0, 0.2)",
+								}}
+							/>
+						</Box>
+					</Grid>
+				</Grid>
+			</Box>
+		</>
+	);
+};
+
+const RecommendMenuCard: React.FC = ({ params }: any) => {
+	return (
+		<>
+			<TBoneSection />
 			<Card sx={{ maxWidth: 500 }}>
 				<CardMedia
 					component="img"
 					height={300}
-					image={RECOMMEND_MENU[0].img}
+					image={RECOMMEND_MENU[0].img[0].src}
 					alt="Paella dish"
 				/>
 				<CardContent>
@@ -78,9 +194,20 @@ const RecommendMenuCard = async ({ params }: any) => {
 	);
 };
 
-const RecommendMenu = async ({ params }: any) => {
+const RecommendMenu: React.FC = ({ params }: any) => {
 	return (
 		<>
+			<Typography
+				variant="h1"
+				sx={{
+					textAlign: "center",
+					fontWeight: 600,
+					fontSize: { xs: 50, md: 80 },
+					py: { xs: 5, md: 10 },
+				}}
+			>
+				เมนูแนะนำ
+			</Typography>
 			<RecommendMenuCard />
 			<Typography>
 				นอกจากอาหารและขนมแล้ว
