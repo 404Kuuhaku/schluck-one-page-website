@@ -66,12 +66,12 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 			{ src: "/images/menu/transparent_background/garlic_bread.png" },
 		],
 	},
-	// {
-	// 	id: 7,
-	// 	name: "ขนมเค้กและของหวานต่างๆ",
-	// 	des: "หมุนเวียนไปมาในแต่ละวัน พลาดไม่ได้กับ ทิรามิสุ  ไวท์ช็อคโกแลตชีสเค้ก และ เครม บรูเล่",
-	// 	img: "/images/menu/",
-	// },
+	{
+		id: 7,
+		name: "Pepper Steak",
+		des: "สเต็กสันใน ราดซอสโฮมเมดพริกไทยสด สำหรับคนชอบแบบเผ็ดร้อน มีเสิร์ฟทั้งหมูและเนื้อ",
+		img: [{ src: "/images/menu/valid_background/pepper_steak.jpg" }],
+	},
 ];
 
 export const SCHLUCK_LOGO = "/images/logo.png";

@@ -7,7 +7,11 @@ import { RECOMMEND_MENU, SECTION_DATA } from "@/libs/constants/constats";
 import { motion, useInView } from "framer-motion";
 import React, { useMemo, useRef } from "react";
 import PopUp from "./PopUp";
-import { IGalleryItem, IPopUpProps } from "@/libs/interface/interface";
+import {
+	IGalleryItem,
+	IPopUpProps,
+	ISteakProps,
+} from "@/libs/interface/interface";
 import Gallery from "./Gallery";
 
 const TBoneSection: React.FC = () => {
@@ -219,62 +223,114 @@ const PizzaSection: React.FC = () => {
 	);
 };
 
-const FiletMignon: React.FC = () => {
+const SteakComponent: React.FC<ISteakProps> = ({ name, des, img }) => {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
+	return (
+		<>
+			<Typography
+				variant="h3"
+				gutterBottom
+				sx={{
+					textAlign: { xs: "center" },
+					fontWeight: { xs: 500, md: 700 },
+					// pt: { xs: 10, md: 0 },
+				}}
+			>
+				{name}
+			</Typography>
+			<Typography
+				variant="h5"
+				gutterBottom
+				sx={{
+					textAlign: { xs: "center" },
+					wordBreak: "keep-all", // Prevent breaking Thai words
+					whiteSpace: "normal", // Allow line breaks between phrases
+					maxWidth: "70%",
+					mx: "auto",
+				}}
+			>
+				{des}
+			</Typography>
+			<Box
+				sx={{
+					mx: "auto",
+					width: { xs: 225, sm: 250, md: 300, lg: 450 },
+					height: { xs: 225, sm: 250, md: 300, lg: 450 },
+				}}
+			>
+				<motion.div
+					ref={ref}
+					initial={{ y: -300, opacity: 0 }}
+					animate={{
+						y: isInView ? 0 : -100,
+						opacity: isInView ? 1 : 0,
+					}}
+					transition={{ duration: 0.8 }}
+					style={{
+						width: "100%",
+						height: "100%",
+						backgroundImage: `url(${img})`,
+						backgroundSize: "cover",
+						backgroundPosition: "center",
+						backgroundRepeat: "no-repeat",
+						boxShadow: "20px 20px 0px #3d251e",
+					}}
+				/>
+			</Box>
+		</>
+	);
+};
+
+const SteakSection: React.FC = () => {
+	const steakData = useMemo(() => {
+		const data: ISteakProps[] = [
+			{
+				name: RECOMMEND_MENU[2].name,
+				des: RECOMMEND_MENU[2].des,
+				img: RECOMMEND_MENU[2].img[0].src,
+			},
+			{
+				name: RECOMMEND_MENU[6].name,
+				des: RECOMMEND_MENU[6].des,
+				img: RECOMMEND_MENU[6].img[0].src,
+			},
+		];
+		return data;
+	}, []);
 	return (
 		<>
 			<Box
 				sx={{
 					pt: { xs: 4, md: 5 },
 					pb: { xs: 7, md: 8 },
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
 				}}
 			>
-				<Typography
-					variant="h3"
-					gutterBottom
-					sx={{
-						textAlign: { xs: "center" },
-						fontWeight: { xs: 500, md: 700 },
-					}}
+				<Grid
+					container
+					spacing={{ xs: 0, md: 4 }}
+					sx={{ width: "90vw" }}
 				>
-					{RECOMMEND_MENU[2].name}
-				</Typography>
-				<Typography
-					variant="h5"
-					gutterBottom
-					sx={{
-						textAlign: { xs: "center" },
-					}}
-				>
-					{RECOMMEND_MENU[2].des}
-				</Typography>
-				<Box
-					sx={{
-						mx: "auto",
-						width: { xs: 300, sm: 400, md: 600, lg: 600 },
-						height: { xs: 225, sm: 300, md: 450, lg: 450 },
-					}}
-				>
-					<motion.div
-						ref={ref}
-						initial={{ y: -300, opacity: 0 }}
-						animate={{
-							y: isInView ? 0 : -100,
-							opacity: isInView ? 1 : 0,
-						}}
-						transition={{ duration: 0.8 }}
-						style={{
-							width: "100%",
-							height: "100%",
-							backgroundImage: `url(${RECOMMEND_MENU[2].img[0].src})`,
-							backgroundSize: "cover",
-							backgroundPosition: "center",
-							backgroundRepeat: "no-repeat",
-							boxShadow: "20px 20px 0px #3d251e",
-						}}
-					/>
-				</Box>
+					{steakData.map((data, index) => (
+						<Grid
+							size={{ xs: 12, md: 6 }}
+							sx={{
+								alignItems: "center",
+								mb: { xs: index === 0 ? 10 : 0, md: 0 },
+							}}
+							key={index}
+						>
+							<SteakComponent
+								name={data.name}
+								des={data.des}
+								img={data.img}
+							/>
+						</Grid>
+					))}
+				</Grid>
 			</Box>
 		</>
 	);
@@ -460,30 +516,89 @@ const DessertSection: React.FC = () => {
 				}}
 			>
 				<Grid container spacing={{ xs: 0, md: 4 }}>
-					<Grid size={{ xs: 12, md: 5 }}>
-						<Typography
-							variant="h3"
-							gutterBottom
-							sx={{
-								textAlign: { xs: "center", md: "left" },
-								fontWeight: { xs: 500, md: 700 },
-								pt: { xs: 0, sm: 10, md: 12, lg: 15 },
-							}}
-						>
-							ขนมเค้กและของหวานต่างๆ
-						</Typography>
-						<Typography
-							variant="h5"
-							gutterBottom
-							sx={{
-								textAlign: { xs: "center", md: "left" },
-							}}
-						>
-							หมุนเวียนไปมาในแต่ละวัน พลาดไม่ได้กับ ทิรามิสุ
-							ไวท์ช็อคโกแลตชีสเค้ก และ เครม บรูเล่
-						</Typography>
+					<Grid size={{ xs: 12, md: 6 }}>
+						<Box sx={{ display: { xs: "none", md: "block" } }}>
+							<Typography
+								variant="h3"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+									fontWeight: { xs: 500, md: 700 },
+									pt: { xs: 0, sm: 10, md: 12, lg: 15 },
+								}}
+							>
+								ขนมเค้กและของหวานต่างๆ
+							</Typography>
+							<Typography
+								variant="h5"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+								}}
+							>
+								หมุนเวียนไปมาในแต่ละวัน พลาดไม่ได้กับ ทิรามิสุ
+							</Typography>
+							<Typography
+								variant="h5"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+								}}
+							>
+								ไวท์ช็อคโกแลตชีสเค้ก และ เครม บรูเล่
+							</Typography>
+						</Box>
+						<Box sx={{ display: { xs: "block", md: "none" } }}>
+							<Typography
+								variant="h3"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+									fontWeight: { xs: 500, md: 700 },
+									pt: { xs: 0, sm: 10, md: 12, lg: 15 },
+								}}
+							>
+								ขนมเค้กและของหวานต่างๆ
+							</Typography>
+							<Typography
+								variant="h5"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+								}}
+							>
+								หมุนเวียนไปมาในแต่ละวัน
+							</Typography>
+							<Typography
+								variant="h5"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+								}}
+							>
+								พลาดไม่ได้กับ ทิรามิสุ
+							</Typography>
+							<Typography
+								variant="h5"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+								}}
+							>
+								ไวท์ช็อคโกแลตชีสเค้ก
+							</Typography>
+							<Typography
+								variant="h5"
+								gutterBottom
+								sx={{
+									textAlign: { xs: "center", md: "left" },
+								}}
+							>
+								และ เครม บรูเล่
+							</Typography>
+						</Box>
 					</Grid>
-					<Grid size={{ xs: 12, md: 7 }}>
+					<Grid size={{ xs: 12, md: 6 }}>
 						{/* <Gallery itemData={galleryData} /> */}
 						<Box sx={{ display: "flex", justifyContent: "center" }}>
 							<Gallery itemData={galleryData} />
@@ -637,18 +752,11 @@ const RecommendMenu: React.FC = () => {
 			</Typography>
 			<TBoneSection />
 			<PizzaSection />
-			<FiletMignon />
+			<SteakSection />
 			<GarlicBreadSection />
 			<NormalSection />
 			<DessertSection />
 			<CoffeeSection />
-			{/* <Typography>
-				นอกจากอาหารและขนมแล้ว
-				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี
-				กาแฟสาละวะไล่โว่ (กาแฟออร์แกนิค) ภายใต้โครงการมูลนิธิภูมิบดินทร์
-				เพื่อส่งเสริมและพัฒนาชุมชนในเขตรักษาพันธุ์สัตว์ป่าทุ่งใหญ่
-				ซึ่งจำหน่ายที่ร้าน Schluck ที่เดียวในกาญจนบุรี
-			</Typography> */}
 		</>
 	);
 };

@@ -9,6 +9,12 @@ export interface IImageRecommendMenu {
 	src: string;
 }
 
+export interface ISteakProps {
+	name: string;
+	des: string;
+	img: string;
+}
+
 export interface IPopUpProps {
 	name: string;
 	imgSrc: string;
