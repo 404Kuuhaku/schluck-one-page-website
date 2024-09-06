@@ -499,7 +499,13 @@ const CoffeeData: React.FC = () => {
 		return {
 			textAlign: { xs: "center", md: "left" },
 			fontWeight: { xs: 500, md: 700 },
-			// fontSize: { xs: 40, md: 40 },
+			fontSize: { xs: 40, sm: 45, md: 50 },
+		};
+	}, []);
+	const SecTitleStyle = useMemo(() => {
+		return {
+			textAlign: { xs: "center", md: "left" },
+			fontWeight: { xs: 500, md: 700 },
 			fontSize: { xs: 30, sm: 35, md: 40 },
 		};
 	}, []);
@@ -511,20 +517,10 @@ const CoffeeData: React.FC = () => {
 	}, []);
 	return (
 		<>
-			<Typography
-				variant="h3"
-				gutterBottom
-				sx={{
-					textAlign: { xs: "center", md: "left" },
-					fontWeight: { xs: 500, md: 700 },
-					// fontSize: { xs: 40, md: 40 },
-					fontSize: { xs: 40, sm: 45, md: 50 },
-					pt: { xs: 0, md: 0, lg: 0 },
-				}}
-			>
+			<Typography variant="h3" gutterBottom sx={TitleStyle}>
 				กาแฟสาละวะไล่โว่
 			</Typography>
-			<Typography variant="h3" gutterBottom sx={TitleStyle}>
+			<Typography variant="h3" gutterBottom sx={SecTitleStyle}>
 				(กาแฟออร์แกนิค)
 			</Typography>
 			<Typography variant="h5" gutterBottom sx={DesStlye}>
@@ -564,8 +560,13 @@ const CoffeeSection: React.FC = () => {
 				<Grid container spacing={{ xs: 0, md: 4 }}>
 					<Grid
 						size={{ xs: 12, md: 6 }}
+						// sx={{
+						// 	display: { xs: "block", md: "none" },
+						// }}
 						sx={{
-							display: { xs: "block", md: "none" },
+							display: { xs: "flex", md: "none" },
+							flexDirection: "column",
+							justifyContent: "center",
 						}}
 					>
 						<CoffeeData />
@@ -599,9 +600,14 @@ const CoffeeSection: React.FC = () => {
 					</Grid>
 					<Grid
 						size={{ xs: 12, md: 4 }}
+						// sx={{
+						// 	display: { xs: "none", md: "block" },
+						// 	alignItems: "center",
+						// }}
 						sx={{
-							display: { xs: "none", md: "block" },
-							alignItems: "center",
+							display: { xs: "none", md: "flex" },
+							flexDirection: "column",
+							justifyContent: "center",
 						}}
 					>
 						<CoffeeData />
