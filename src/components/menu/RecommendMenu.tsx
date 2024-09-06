@@ -5,15 +5,9 @@ import Grid from "@mui/material/Grid2";
 import { RECOMMEND_MENU } from "@/libs/constants/constats";
 
 import { motion, useInView } from "framer-motion";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import PopUp from "./PopUp";
-import {
-	IGalleryItem,
-	IGalleryProps,
-	IPopUpProps,
-} from "@/libs/interface/interface";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+import { IGalleryItem, IPopUpProps } from "@/libs/interface/interface";
 import Gallery from "./Gallery";
 
 const TBoneSection: React.FC = () => {
@@ -472,7 +466,7 @@ const DessertSection: React.FC = () => {
 							sx={{
 								textAlign: { xs: "center", md: "left" },
 								fontWeight: { xs: 500, md: 700 },
-								pt: { xs: 0, sm: 10, md: 12, lg: 20 },
+								pt: { xs: 0, sm: 10, md: 12, lg: 15 },
 							}}
 						>
 							ขนมเค้กและของหวานต่างๆ
@@ -500,6 +494,124 @@ const DessertSection: React.FC = () => {
 	);
 };
 
+const CoffeeData: React.FC = () => {
+	const TitleStyle = useMemo(() => {
+		return {
+			textAlign: { xs: "center", md: "left" },
+			fontWeight: { xs: 500, md: 700 },
+			// fontSize: { xs: 40, md: 40 },
+			fontSize: { xs: 30, sm: 35, md: 40 },
+		};
+	}, []);
+	const DesStlye = useMemo(() => {
+		return {
+			textAlign: { xs: "center", md: "left" },
+			fontSize: { xs: 15, sm: 20, md: 25 },
+		};
+	}, []);
+	return (
+		<>
+			<Typography
+				variant="h3"
+				gutterBottom
+				sx={{
+					textAlign: { xs: "center", md: "left" },
+					fontWeight: { xs: 500, md: 700 },
+					// fontSize: { xs: 40, md: 40 },
+					fontSize: { xs: 40, sm: 45, md: 50 },
+					pt: { xs: 0, md: 0, lg: 0 },
+				}}
+			>
+				กาแฟสาละวะไล่โว่
+			</Typography>
+			<Typography variant="h3" gutterBottom sx={TitleStyle}>
+				(กาแฟออร์แกนิค)
+			</Typography>
+			<Typography variant="h5" gutterBottom sx={DesStlye}>
+				นอกจากอาหารและขนมแล้ว
+			</Typography>
+			<Typography variant="h5" gutterBottom sx={DesStlye}>
+				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี
+			</Typography>
+			<Typography variant="h5" gutterBottom sx={DesStlye}>
+				กาแฟสาละวะไล่โว่ (กาแฟออร์แกนิค)
+			</Typography>
+			<Typography variant="h5" gutterBottom sx={DesStlye}>
+				ภายใต้โครงการมูลนิธิภูมิบดินทร์
+			</Typography>
+			<Typography variant="h5" gutterBottom sx={DesStlye}>
+				เพื่อส่งเสริมและพัฒนาชุมชนในเขตรักษาพันธุ์สัตว์ป่าทุ่งใหญ่
+			</Typography>
+			<Typography variant="h5" gutterBottom sx={DesStlye}>
+				ซึ่งจำหน่ายที่ร้าน Schluck ที่เดียวในกาญจนบุรี
+			</Typography>
+		</>
+	);
+};
+
+const CoffeeSection: React.FC = () => {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true });
+	return (
+		<>
+			<Box
+				sx={{
+					pt: { xs: 4, md: 5 },
+					pb: { xs: 2, md: 5 },
+					bgcolor: "#14100d",
+				}}
+			>
+				<Grid container spacing={{ xs: 0, md: 4 }}>
+					<Grid
+						size={{ xs: 12, md: 6 }}
+						sx={{
+							display: { xs: "block", md: "none" },
+						}}
+					>
+						<CoffeeData />
+					</Grid>
+					<Grid size={{ xs: 12, md: 7 }}>
+						<Box
+							sx={{
+								mx: "auto",
+								height: { xs: 225, sm: 300, md: 450, lg: 600 },
+								width: { xs: 225, sm: 300, md: 450, lg: 600 },
+							}}
+						>
+							<motion.div
+								ref={ref}
+								initial={{ x: -300, opacity: 0 }}
+								animate={{
+									x: isInView ? 0 : -100,
+									opacity: isInView ? 1 : 0,
+								}}
+								transition={{ duration: 0.8 }}
+								style={{
+									width: "100%",
+									height: "100%",
+									backgroundImage: `url(/images/menu/valid_background/coffee.jpg)`,
+									backgroundSize: "cover",
+									backgroundPosition: "center",
+									backgroundRepeat: "no-repeat",
+								}}
+							/>
+						</Box>
+					</Grid>
+					<Grid
+						size={{ xs: 12, md: 4 }}
+						sx={{
+							display: { xs: "none", md: "block" },
+							alignItems: "center",
+						}}
+					>
+						<CoffeeData />
+					</Grid>
+				</Grid>
+			</Box>
+		</>
+	);
+};
+
 const RecommendMenu: React.FC = () => {
 	return (
 		<>
@@ -520,6 +632,7 @@ const RecommendMenu: React.FC = () => {
 			<GarlicBreadSection />
 			<NormalSection />
 			<DessertSection />
+			<CoffeeSection />
 			{/* <Typography>
 				นอกจากอาหารและขนมแล้ว
 				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี
