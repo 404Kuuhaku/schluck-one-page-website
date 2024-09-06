@@ -2,7 +2,7 @@
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { RECOMMEND_MENU } from "@/libs/constants/constats";
+import { RECOMMEND_MENU, SECTION_DATA } from "@/libs/constants/constats";
 
 import { motion, useInView } from "framer-motion";
 import React, { useMemo, useRef } from "react";
@@ -450,6 +450,7 @@ const DessertSection: React.FC = () => {
 	return (
 		<>
 			<Box
+				id={SECTION_DATA[2].id}
 				sx={{
 					display: "flex",
 					justifyContent: "center",
@@ -551,6 +552,7 @@ const CoffeeSection: React.FC = () => {
 	return (
 		<>
 			<Box
+				id={SECTION_DATA[3].id}
 				sx={{
 					pt: { xs: 4, md: 5 },
 					pb: { xs: 2, md: 5 },
@@ -622,6 +624,7 @@ const RecommendMenu: React.FC = () => {
 	return (
 		<>
 			<Typography
+				id={SECTION_DATA[1].id}
 				variant="h1"
 				sx={{
 					textAlign: "center",

@@ -73,3 +73,13 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 	// 	img: "/images/menu/",
 	// },
 ];
+
+export const SCHLUCK_LOGO = "/images/logo.png";
+
+export const SECTION_DATA = [
+	{ name: "Home", id: "main-section" },
+	{ name: "เมนูแนะนำ", id: "recommend-menu-section" },
+	{ name: "ของหวาน", id: "dessert-section" },
+	{ name: "กาแฟ", id: "coffee-section" },
+	{ name: "จองโต๊ะ/สั่งอาหาร", id: "book-table-section" },
+];

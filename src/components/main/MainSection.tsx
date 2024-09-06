@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { AnimatePresence, motion } from "framer-motion";
+import { SECTION_DATA } from "@/libs/constants/constats";
 
 const MainSection: React.FC = () => {
 	const [currentImage, setCurrentImage] = useState(0);
@@ -56,6 +57,7 @@ const MainSection: React.FC = () => {
 
 	return (
 		<Box
+			id={SECTION_DATA[0].id}
 			sx={{
 				position: "relative",
 				minHeight: { xs: 300, sm: 400, md: 400, lg: "100vh" },

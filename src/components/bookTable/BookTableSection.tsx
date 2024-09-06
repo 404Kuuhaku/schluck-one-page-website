@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { SECTION_DATA } from "@/libs/constants/constats";
 
 const ModernMap: React.FC = () => {
 	const controls = useAnimation();
@@ -59,13 +60,14 @@ const BookTableSection: React.FC = () => {
 	return (
 		<>
 			<Box
+				id={SECTION_DATA[4].id}
 				sx={{ bgcolor: "#212121", py: 5 }}
 				// sx={{bgcolor: "#2a3139"}}
 			>
 				<Typography
 					variant="h2"
 					component="div"
-					sx={{ textAlign: "center" , fontWeight:"500"}}
+					sx={{ textAlign: "center", fontWeight: "500" }}
 				>
 					จองโต๊ะ/สั่งอาหาร
 				</Typography>
