@@ -7,9 +7,14 @@ import { RECOMMEND_MENU } from "@/libs/constants/constats";
 import { motion, useInView } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import PopUp from "./PopUp";
-import { IPopUpProps } from "@/libs/interface/interface";
+import {
+	IGalleryItem,
+	IGalleryProps,
+	IPopUpProps,
+} from "@/libs/interface/interface";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import Gallery from "./Gallery";
 
 const TBoneSection: React.FC = () => {
 	const ref = useRef(null);
@@ -417,6 +422,84 @@ const NormalSection: React.FC = () => {
 	);
 };
 
+const DessertSection: React.FC = () => {
+	const galleryData = useMemo(() => {
+		const data: IGalleryItem[] = [
+			{
+				name: "mille feuille",
+				imgSrc: "/images/menu/valid_background/mille_feuille.jpg",
+			},
+			{
+				name: "brownie cheesecake",
+				imgSrc: "/images/menu/valid_background/brownie_cheesecake.jpg",
+			},
+			{
+				name: "japanese cheesecake",
+				imgSrc: "/images/menu/valid_background/japanese_cheesecake.jpg",
+			},
+			{
+				name: "banoffee",
+				imgSrc: "/images/menu/valid_background/banoffee.jpg",
+			},
+			{
+				name: "croissant",
+				imgSrc: "/images/menu/valid_background/croissant.jpg",
+			},
+			{
+				name: "tiramisu",
+				imgSrc: "/images/menu/valid_background/tiramisu.jpg",
+			},
+		];
+		return data;
+	}, []);
+
+	return (
+		<>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					px: { xs: 2, md: 10 },
+					// mx: "auto",
+				}}
+			>
+				<Grid container spacing={{ xs: 0, md: 4 }}>
+					<Grid size={{ xs: 12, md: 5 }}>
+						<Typography
+							variant="h3"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+								fontWeight: { xs: 500, md: 700 },
+								pt: { xs: 0, sm: 10, md: 12, lg: 20 },
+							}}
+						>
+							ขนมเค้กและของหวานต่างๆ
+						</Typography>
+						<Typography
+							variant="h5"
+							gutterBottom
+							sx={{
+								textAlign: { xs: "center", md: "left" },
+							}}
+						>
+							หมุนเวียนไปมาในแต่ละวัน พลาดไม่ได้กับ ทิรามิสุ
+							ไวท์ช็อคโกแลตชีสเค้ก และ เครม บรูเล่
+						</Typography>
+					</Grid>
+					<Grid size={{ xs: 12, md: 7 }}>
+						{/* <Gallery itemData={galleryData} /> */}
+						<Box sx={{ display: "flex", justifyContent: "center" }}>
+							<Gallery itemData={galleryData} />
+						</Box>
+					</Grid>
+				</Grid>
+			</Box>
+		</>
+	);
+};
+
 const RecommendMenu: React.FC = () => {
 	return (
 		<>
@@ -436,7 +519,7 @@ const RecommendMenu: React.FC = () => {
 			<FiletMignon />
 			<GarlicBreadSection />
 			<NormalSection />
-
+			<DessertSection />
 			{/* <Typography>
 				นอกจากอาหารและขนมแล้ว
 				ทางร้านยังมีผลิตภัณฑ์กาแฟสินค้าจากจังหวัดกาญจนบุรี

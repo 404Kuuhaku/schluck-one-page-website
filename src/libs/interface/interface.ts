@@ -15,6 +15,15 @@ export interface IPopUpProps {
 	// ptValues: { xs: number; md: number; lg: number };
 }
 
+export interface IGalleryItem {
+	name: string;
+	imgSrc: string;
+}
+
+export interface IGalleryProps {
+	itemData: IGalleryItem[];
+}
+
 export interface SocialButtonProps {
 	icon: React.ReactNode;
 	label: string;
