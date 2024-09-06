@@ -5,9 +5,11 @@ import Grid from "@mui/material/Grid2";
 import { RECOMMEND_MENU } from "@/libs/constants/constats";
 
 import { motion, useInView } from "framer-motion";
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import PopUp from "./PopUp";
 import { IPopUpProps } from "@/libs/interface/interface";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 const TBoneSection: React.FC = () => {
 	const ref = useRef(null);
@@ -124,10 +126,9 @@ const PizzaSection: React.FC = () => {
 		<>
 			<Box
 				sx={{
-					pt: { xs: 2, md: 5 },
-					pb: 3,
+					pt: { xs: 4, md: 5 },
+					pb: { xs: 2, md: 5 },
 					bgcolor: "#14100d",
-					height: { xs: 400, md: 650 },
 				}}
 			>
 				<Grid container spacing={{ xs: 0, md: 4 }}>
@@ -226,9 +227,8 @@ const FiletMignon: React.FC = () => {
 		<>
 			<Box
 				sx={{
-					pt: { xs: 0, md: 5 },
-					pb: 6,
-					height: { xs: 400, md: 650 },
+					pt: { xs: 4, md: 5 },
+					pb: { xs: 7, md: 8 },
 				}}
 			>
 				<Typography
@@ -284,16 +284,19 @@ const FiletMignon: React.FC = () => {
 const GarlicBreadSection: React.FC = () => {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
+	// const theme = useTheme();
+	// const isSmallScreen = useMediaQuery(theme.breakpoints.up("sm"));
+	// console.log("isSmallScreen:", isSmallScreen);
+
 	return (
 		<>
 			<Box
 				sx={{
-					pt: { xs: 2, md: 5 },
-					pb: 6,
+					pt: { xs: 4, md: 5 },
+					pb: { xs: 2, md: 5 },
 					display: "flex",
 					justifyContent: "center",
 					bgcolor: "#14100d",
-					height: { xs: 400, md: 650 },
 				}}
 			>
 				<Grid
@@ -329,7 +332,7 @@ const GarlicBreadSection: React.FC = () => {
 						</Typography>
 					</Grid>
 
-					<Grid size={{ xs: 12, md: 7}}>
+					<Grid size={{ xs: 12, md: 7 }}>
 						<Box
 							sx={{
 								mx: "auto",
@@ -339,11 +342,24 @@ const GarlicBreadSection: React.FC = () => {
 						>
 							<motion.div
 								ref={ref}
+								// initial={{ x: 100, opacity: 0 }}
+								// animate={{
+								// 	x: isInView ? 0 : 50,
+								// 	opacity: isInView ? 1 : 0,
+								// }}
 								initial={{ x: 30, opacity: 0 }}
 								animate={{
 									x: isInView ? 0 : 30,
 									opacity: isInView ? 1 : 0,
 								}}
+								// initial={{
+								// 	x: initialX,
+								// 	opacity: 0,
+								// }}
+								// animate={{
+								// 	x: isInView ? 0 : animateX,
+								// 	opacity: isInView ? 1 : 0,
+								// }}
 								transition={{ duration: 0.8 }}
 								style={{
 									width: "100%",
