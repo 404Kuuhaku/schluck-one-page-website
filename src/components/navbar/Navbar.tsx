@@ -40,7 +40,7 @@ const MainLogo: React.FC = () => {
 				variant="h4"
 				noWrap
 				component="a"
-				href="#app-bar-with-responsive-menu"
+				// href="#app-bar-with-responsive-menu"
 				sx={{
 					mr: 2,
 					display: { xs: "none", md: "flex" },
@@ -196,12 +196,17 @@ const PageLGScreen: React.FC = () => {
 					justifyContent: "end",
 				}}
 			>
-				{SECTION_DATA.map((section) => (
+				{SECTION_DATA.map((section, index) => (
 					<Button
 						key={section.id}
 						// onClick={handleCloseNavMenu}
 						onClick={handleClick(section.id)}
 						size="large"
+						variant={
+							index === SECTION_DATA.length - 1
+								? "contained"
+								: "text"
+						}
 						sx={{
 							my: 2,
 							color: "white",

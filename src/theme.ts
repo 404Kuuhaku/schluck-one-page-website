@@ -23,14 +23,13 @@ const anuphan = Anuphan({
 	display: "swap",
 });
 
-
 export const theme = createTheme({
 	palette: {
 		mode: "dark",
 		primary: {
-			light: red[300],
-			main: red["A200"],
-			dark: red[900],
+			light: brown[300],
+			main: brown["A700"],
+			dark: brown[900],
 		},
 
 		secondary: {

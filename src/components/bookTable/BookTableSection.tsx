@@ -1,11 +1,12 @@
 "use client";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { SECTION_DATA } from "@/libs/constants/constats";
+import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 
 const ModernMap: React.FC = () => {
 	const controls = useAnimation();
@@ -85,15 +86,44 @@ const BookTableSection: React.FC = () => {
 						justifyContent="center"
 						alignItems="center"
 					>
-						<Grid size={{ xs: 12, md: 6 }}>
-							<Typography
+						<Grid
+							size={{ xs: 12, md: 6 }}
+							sx={{
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "center",
+							}}
+						>
+							{/* <Typography
 								variant="h5"
 								component="div"
 								gutterBottom
 								sx={{ textAlign: { xs: "center", md: "left" } }}
 							>
 								เบอร์โทร 081-355-9477
-							</Typography>
+							</Typography> */}
+							<Box mx="auto">
+								<Button
+									variant="contained"
+									size="large"
+									component="a"
+									href="tel:0813559477"
+									sx={{
+										p: 2,
+										mb: 4,
+										borderRadius: 2,
+									}}
+								>
+									<PhoneEnabledIcon sx={{ mr: 1 }} />
+									<Typography
+										variant="h4"
+										sx={{ fontSize: { xs: 30 } }}
+									>
+										081-355-9477
+									</Typography>
+								</Button>
+							</Box>
+
 							<Typography
 								variant="h5"
 								component="div"
