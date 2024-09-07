@@ -29,7 +29,7 @@ export const RECOMMEND_MENU: IRecommendMenu[] = [
 	{
 		id: 3,
 		name: "Filet Mignon",
-		des: "สเต็กสันในนุ่มๆเสิร์ฟกับโฮมเมดเบคอน",
+		des: "สเต็กสันในนุ่มๆ เสิร์ฟกับโฮมเมดเบคอน",
 		img: [{ src: "/images/menu/valid_background/filet_mignon.jpg" }],
 	},
 	{
